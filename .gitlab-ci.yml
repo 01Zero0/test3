@@ -5,7 +5,7 @@ pytest:
     - pip install --upgrade pip
     - pip install -r requirements.txt
   script:
-    - python -m pytest tests/test_main.py -v
+    - python -m pytest src/test_iris_model.py -v
   artifacts:
     when: always
     reports:
