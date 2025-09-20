@@ -1,8 +1,7 @@
 test-simple:
   stage: test
-  image: python:3.13.3
   script:
-    - echo "Начало работы пайплайна"
-    - python -c "print('Hello from GitLab CI!')"
     - echo "Пайплайн работает корректно!"
     - echo "Можно добавлять настоящие тесты"
+  tags:
+    - shell
