@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from collections import defaultdict
 
 # Импортируем функции из вашего кода
-from main import (
+from src.main import (
     IrisLoader, balance_classes, create_tensor_with_memory_saving,
     IrisNN, validate_input_data
 )
