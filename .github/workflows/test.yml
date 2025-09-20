@@ -17,9 +17,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
         pip install torch numpy scikit-learn matplotlib seaborn pytest
 
     - name: Run tests
+      env:
+        SECRET_ENV_VAR: ${{ secrets.SECRET_ENV_VAR }}
       run: |
         python -m pytest tests/test_main.py -v
