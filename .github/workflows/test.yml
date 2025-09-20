@@ -29,9 +29,6 @@ jobs:
     - name: Format code with Black
       run: black src/ tests/
 
-    - name: Sort imports with isort
-      run: isort src/ tests/
-
     - name: Check code style
       run: |
         flake8 src/ --max-line-length=88 --ignore=E203,W503
