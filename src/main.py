@@ -88,12 +88,12 @@ print(f"Сбалансированный тренировочный набор: 
 print(f"Сбалансированный тестовый набор: {X_test_balanced.shape}")
 
 # Сохранение данных
-save_dir = "/home/osboxes/PycharmProjects/LR2/data"
+save_dir = "./data"
 os.makedirs(save_dir, exist_ok=True)
 np.save(os.path.join(save_dir, "x_train_balanced.npy"), X_train_balanced)
 np.save(os.path.join(save_dir, "y_train_balanced.npy"), y_train_balanced)
 
-save_dir = "/home/osboxes/PycharmProjects/LR2/tests"
+save_dir = "./tests"
 os.makedirs(save_dir, exist_ok=True)
 np.save(os.path.join(save_dir, "x_test_balanced.npy"), X_test_balanced)
 np.save(os.path.join(save_dir, "y_test_balanced.npy"), y_test_balanced)
@@ -118,7 +118,7 @@ ax2.set_ylabel('Количество')
 ax2.set_xticks(range(len(test_balanced_counts)))
 ax2.set_xticklabels(target_names, rotation=45)
 
-save_dir = "/home/osboxes/PycharmProjects/LR2/notebooks"
+save_dir = "./notebooks"
 os.makedirs(save_dir, exist_ok=True)
 plt.tight_layout()
 plt.savefig(os.path.join(save_dir, 'balans_iris.png'), dpi=300, bbox_inches='tight')
@@ -292,7 +292,7 @@ for epoch in range(num_epochs):
     gc.collect()
 
 
-models_dir = "/home/osboxes/losst_decrypted/"
+models_dir = "./models"
 os.makedirs(models_dir, exist_ok=True)
 model_save_path = os.path.join(models_dir, 'model_iris.pth')
 torch.save(model.state_dict(), model_save_path)
