@@ -1,4 +1,3 @@
-import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
@@ -11,7 +10,7 @@ import gc
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 import resource
 from sklearn.decomposition import PCA
@@ -64,7 +63,7 @@ def balance_classes(x_data, y_data, samples_per_class=50):
 loader = IrisLoader()
 X, y, data_type, num_classes, feature_names, target_names = loader.load_iris_data()
 
-print(f"Загружен датасет: Iris Dataset")
+print("Загружен датасет: Iris Dataset")
 print(f"Размер данных: {X.shape}")
 print(f"Тип данных: {data_type}")
 print(f"Количество классов: {num_classes}")
@@ -331,7 +330,7 @@ precision = precision_score(y_true, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_true, y_pred, average='weighted', zero_division=0)
 f1 = f1_score(y_true, y_pred, average='weighted', zero_division=0)
 
-print(f"\nОБЩИЕ МЕТРИКИ:")
+print("\nОБЩИЕ МЕТРИКИ:")
 print(f"Accuracy: {accuracy:.4f}")
 print(f"Precision: {precision:.4f}")
 print(f"Recall: {recall:.4f}")
