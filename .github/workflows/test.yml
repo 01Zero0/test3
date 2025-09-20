@@ -3,7 +3,7 @@ name: Python Tests
 on: [push, pull_request]
 
 jobs:
-  quality-check:
+  test:
     runs-on: ubuntu-latest
 
     steps:
