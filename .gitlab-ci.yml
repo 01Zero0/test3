@@ -1,7 +1,0 @@
-test-simple:
-  stage: test
-  script:
-    - echo "Пайплайн работает корректно!"
-    - echo "Можно добавлять настоящие тесты"
-  tags:
-    - shell
