@@ -34,7 +34,7 @@ jobs:
         flake8 src/ --max-line-length=88
         black --check src/ tests/
 
-    # Добавляем шаг для отправки email при неудачном выполнении
+
     - name: Notify on failure
       if: always()
       uses: dawidd6/action-send-mail@v3
