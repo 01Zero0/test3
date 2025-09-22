@@ -53,5 +53,4 @@ jobs:
           - Репозиторий: ${{ github.repository }}
           - Ветка: ${{ github.ref }}
           - Коммит: ${{ github.sha }}
-          - Запуск: ${{ github.run_id }}
           - Ссылка: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
