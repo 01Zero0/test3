@@ -33,3 +33,25 @@ jobs:
       run: |
         flake8 src/ --max-line-length=88
         black --check src/ tests/
+
+    # Добавляем шаг для отправки email при неудачном выполнении
+    - name: Notify on failure
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: 'Test: ${{ github.repository }}'
+        to: ${{ secrets.NOTIFICATION_EMAIL }}
+        from: GitHub Actions
+        body: |
+          Тесты в репозитории ${{ github.repository }} завершились с ошибкой.
+          
+          Детали:
+          - Репозиторий: ${{ github.repository }}
+          - Ветка: ${{ github.ref }}
+          - Коммит: ${{ github.sha }}
+          - Запуск: ${{ github.run_id }}
+          - Ссылка: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
