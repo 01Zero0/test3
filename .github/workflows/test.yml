@@ -47,7 +47,7 @@ jobs:
         to: ${{ secrets.NOTIFICATION_EMAIL }}
         from: GitHub Actions
         body: |
-          Тесты в репозитории ${{ github.repository }} завершились с ошибкой.
+          Тесты в репозитории ${{ github.repository }} завершились.
           
           Детали:
           - Репозиторий: ${{ github.repository }}
