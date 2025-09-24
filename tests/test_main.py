@@ -60,7 +60,7 @@ def real_data_loader(real_iris_data):
 
 class TestDataPreprocessing:
 
-    def test_iris_loader_integration(self):
+    def test_iris_loader(self):
         loader = IrisLoader()
         X, y, data_type, num_classes, feature_names, target_names = loader.load_iris_data()
 
@@ -74,7 +74,7 @@ class TestDataPreprocessing:
         assert np.allclose(np.mean(X, axis=0), 0, atol=1e-1)
         assert np.allclose(np.std(X, axis=0), 1, atol=1e-1)
 
-    def test_train_test_split_balance(self):
+    def test_train_test_balance(self):
         loader = IrisLoader()
         X, y, _, _, _, _ = loader.load_iris_data()
 
@@ -101,7 +101,7 @@ class TestDataPreprocessing:
 
 class TestModelArchitecture:
 
-    def test_model_initialization(self):
+    def test_model_architecture(self):
         model = IrisNN(input_size=4, num_classes=3)
 
         assert model.fc1.in_features == 4
@@ -116,10 +116,9 @@ class TestModelArchitecture:
         assert model_custom.fc1.in_features == 10
         assert model_custom.fc3.out_features == 5
 
-    def test_model_forward_pass_real_data(self, real_iris_data):
+    def test_model_forward_pass(self, real_iris_data):
         model = IrisNN(input_size=4, num_classes=3)
 
-        # Берем реальные данные
         X = real_iris_data['X_train'][:5]
         x_tensor = torch.FloatTensor(X)
 
@@ -129,7 +128,7 @@ class TestModelArchitecture:
         assert not torch.isnan(output).any()
         assert not torch.isinf(output).any()
 
-    def test_model_parameters_initialization(self):
+    def test_model_parameters(self):
         model = IrisNN(input_size=4, num_classes=3)
 
 
@@ -137,7 +136,7 @@ class TestModelArchitecture:
             assert param.requires_grad == True
             assert param.shape.numel() > 0
 
-    def test_model_dropout_behavior(self):
+    def test_model_training_mode(self):
 
         model = IrisNN(input_size=4, num_classes=3)
         X = torch.randn(10, 4)
@@ -200,7 +199,7 @@ class TestIntegration:
 
 class TestMetricsCalculation:
 
-    def test_metrics_with_real_predictions(self, real_data_loader):
+    def test_accuracy_calculation (self, real_data_loader):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         test_loader = real_data_loader['test_loader']
         num_classes = real_data_loader['num_classes']
@@ -234,19 +233,12 @@ class TestMetricsCalculation:
         f1 = f1_score(y_true, y_pred, average='weighted', zero_division=0)
 
 
-        print("\nОБЩИЕ МЕТРИКИ (тест):")
-        print(f"Accuracy: {accuracy:.4f}")
-        print(f"Precision: {precision:.4f}")
-        print(f"Recall: {recall:.4f}")
-        print(f"F1-Score: {f1:.4f}")
-
-
         assert 0 <= accuracy <= 1
         assert 0 <= precision <= 1
         assert 0 <= recall <= 1
         assert 0 <= f1 <= 1
 
-        # Проверяем что все samples обработаны
+
         assert len(y_pred) == len(y_true) == 42
 
 
